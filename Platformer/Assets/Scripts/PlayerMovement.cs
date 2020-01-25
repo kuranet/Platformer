@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rigidBody;
+    [SerializeField] float forwardForce = 500f;
+    [SerializeField] float sideForce = 200f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rigidBody.AddForce(0, 0, 200*Time.deltaTime);
+        rigidBody.AddForce(0, 0, forwardForce*Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            rigidBody.AddForce(sideForce * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            rigidBody.AddForce(-sideForce * Time.deltaTime, 0, 0);
+        }
     }
 }
