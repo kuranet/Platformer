@@ -18,11 +18,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            rigidBody.AddForce(sideForce * Time.deltaTime, 0, 0);
+            rigidBody.AddForce(sideForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            rigidBody.AddForce(-sideForce * Time.deltaTime, 0, 0);
+            rigidBody.AddForce(-sideForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
     }
 }
