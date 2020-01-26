@@ -7,6 +7,13 @@ public class GameManager : MonoBehaviour
 
     public float restartDelay = 1f;
 
+    public GameObject levelComplete;
+
+    public void CompleteLevel()
+    {
+        levelComplete.SetActive(true);
+    }
+
     public void EndGame()
     {
         if (gameHasEnded == false)
