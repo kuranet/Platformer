@@ -674,11 +674,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3023c6615d36d3a4583a05f26ac4888b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPoss: {fileID: 9062303303242684632}
-  prefab: {fileID: 981272894970723725, guid: ee5765bfb3dad9848b58ec3b6c0a651c, type: 3}
+  player: {fileID: 9062303303242684632}
   leftXPos: -7
   rightXPos: 7
   Step: 2
+  obstaclePrefab: {fileID: 981272894970723725, guid: ee5765bfb3dad9848b58ec3b6c0a651c,
+    type: 3}
+  generationLookahead: 50
+  obstaclesDistance: 15
+  playerDistanceGenerationTrigger: 15
 --- !u!1 &834187320
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,26 +2,41 @@
 
 public class Automatization : MonoBehaviour
 {
-    [SerializeField] Transform PlayerPoss;
-    [SerializeField] GameObject prefab;
+    [SerializeField] Transform player;
     [SerializeField] float leftXPos = -7f;
     [SerializeField] float rightXPos = 7f;
     [SerializeField] float Step = 2f;
 
-    
+    [SerializeField, Header("Generation settings")]
+    private GameObject obstaclePrefab;
 
-    // Update is called once per frame
+    [SerializeField]
+    private float generationLookahead;
+
+    [SerializeField]
+    private float obstaclesDistance;
+
+    [SerializeField]
+    private float playerDistanceGenerationTrigger;
+    
+    private float lastGeneratedPos = 0;
+
     void Update()
     {
-        if((int)(PlayerPoss.position.z) % 25 == 0)
+        if(player.position.z > lastGeneratedPos - playerDistanceGenerationTrigger)
         {
-            for (float i = leftXPos; i <= rightXPos; i += Step + 0.1f) //prefab.transform.lossyScale.x
+            var zPos = lastGeneratedPos;
+            for (; zPos <= lastGeneratedPos + generationLookahead; zPos += obstaclesDistance)
             {
-                if (Random.value > 0.8)
+                for (float i = leftXPos; i <= rightXPos; i += Step + 0.1f) //prefab.transform.lossyScale.x
                 {
-                    Instantiate( prefab, new Vector3(i, 1, PlayerPoss.position.z + 25f), Quaternion.identity);
+                    if (Random.value > 0.8)
+                    {
+                        Instantiate(obstaclePrefab, new Vector3(i, 1.5f, zPos), Quaternion.identity);
+                    }
                 }
             }
+            lastGeneratedPos = zPos;
         }  
     }
 }
